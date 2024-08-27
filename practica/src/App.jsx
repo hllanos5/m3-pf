@@ -1,11 +1,18 @@
 import { useState } from 'react'
+import { LadoIzquierdo } from './components/LadoIzquierdo'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-    </>
+    <main>
+      <div className='lado-izquierdo'>
+        <LadoIzquierdo/>
+      </div>
+      <div className='lado-derecho'>
+
+      </div>
+    </main>
   )
 }
 
