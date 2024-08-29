@@ -11,6 +11,14 @@ main {
     background-position: center; 
     background-blend-mode: soft-light;
     background-position-y: 120px;
+    .p-inputtext{
+      background-color: #6e707a;
+      color: white;
+      outline-width: 0;   
+    }
+    .p-inputtext::placeholder{
+      color: white;
+    }
     .p-card{
       border-radius:none;
     }
@@ -208,8 +216,7 @@ main {
           padding: 0;
           gap: 2rem;
           li{
-            list-style-type: none;
-            border:1px groove #3f4257;
+            list-style-type: none;           
             height: 4rem;
             cursor: pointer;
             color: white;
@@ -217,6 +224,9 @@ main {
             align-items: center;
             justify-content: space-between;
             padding-inline: 1rem;
+          }
+          li:hover {
+            border:1px groove #3f4257;
           }
         }
       }

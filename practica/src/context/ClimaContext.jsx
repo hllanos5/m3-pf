@@ -11,6 +11,7 @@ export default function ClimaProvider({ children }) {
     const [unidadMedida, setUnidadMedida] = useState('metric')
     const [dataClima, setDataClima] = useState({});
     const [dataDias, setDataDias] = useState({});
+    const [showBusqueda, setShowBusqueda] = useState(false);
 
     const obtenerPosicion = ()=> {
         navigator.geolocation.getCurrentPosition(success);
@@ -136,7 +137,9 @@ export default function ClimaProvider({ children }) {
                 setUnidadMedida,
                 obtenerDireccionViento,
                 dataDias,
-                obtenerPosicion
+                obtenerPosicion,
+                showBusqueda,
+                setShowBusqueda
             }}
         >
             {children}

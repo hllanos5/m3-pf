@@ -7,13 +7,13 @@ import moment from 'moment'
 
 export  function SideBar() {
 
-    const { city, dataClima, unidadMedida, obtenerPosicion} = useContext(ClimaContext);
+    const { city, dataClima, unidadMedida, obtenerPosicion, showBusqueda, setShowBusqueda} = useContext(ClimaContext);
 
     return (
         <Card className='card-lado-izquierdo'>
             <div className='navbar'>
-                <div className='busqueda'>
-                    <InputText className="p-inputtext-sm" placeholder="Small" />
+                <div className='busqueda'>                    
+                    <InputText className="p-inputtext-sm" placeholder="Search for places" onClick={() => {setShowBusqueda(true)}}/>
                 </div>
                 <div className='pointer' onClick={()=>{obtenerPosicion()}}>
                     <Image src="./images/location.png" alt="Image" width="20" />

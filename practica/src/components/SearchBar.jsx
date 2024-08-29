@@ -1,22 +1,25 @@
-import React from 'react'
+import { useContext,useState, useEffect } from "react"
 import { Card } from 'primereact/card';
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 import { Button } from 'primereact/button';
+import { ClimaContext } from '../context/ClimaContext';
 
 export  function SearchBar() {
+    const { setShowBusqueda} = useContext(ClimaContext);
+
   return (
     <Card className='panel-search-bar'>
         <div className='panel-cerrar'>
-            <i className='pi pi-times'></i>
+            <i className='pi pi-times' onClick={()=> {setShowBusqueda(false)}}></i>
         </div>
         <div className='panel-busqueda'>
             <IconField iconPosition="left">
                 <InputIcon className="pi pi-search"> </InputIcon>
                 <InputText v-model="value1" placeholder="Search location" />
             </IconField>
-            <Button label="Search" />
+            <Button label="Search" onClick={()=> {setShowBusqueda(false)}}/>
         </div>
         <div className='panel-paises'>
             <ul>
