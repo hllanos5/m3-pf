@@ -209,25 +209,17 @@ main {
         }
       }
       .panel-paises{
-        ul {
-          display: flex;
-          flex-direction: column;
-          margin-top: 3rem;
-          padding: 0;
-          gap: 2rem;
-          li{
-            list-style-type: none;           
-            height: 4rem;
-            cursor: pointer;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-inline: 1rem;
-          }
-          li:hover {
-            border:1px groove #3f4257;
-          }
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 1rem;
+        .p-button-label{
+          text-align: left;
+          font-weight: 400;
+        }
+        .p-button{
+          background-color:  #1E213A;
+          border: 1px solid #1E213A;
         }
       }
 

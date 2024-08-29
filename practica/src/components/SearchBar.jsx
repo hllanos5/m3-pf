@@ -7,7 +7,17 @@ import { Button } from 'primereact/button';
 import { ClimaContext } from '../context/ClimaContext';
 
 export  function SearchBar() {
-    const { setShowBusqueda} = useContext(ClimaContext);
+    const {setCity, setShowBusqueda} = useContext(ClimaContext);
+
+    const [searchValues, setSearchValues] = useState("");
+    
+    const handleBusqueda = (e)=> {
+        setSearchValues(e.target.value);
+    }
+
+    const handleBusquedaAccion = (e) => {
+        setCity(searchValues);
+    }
 
   return (
     <Card className='panel-search-bar'>
@@ -17,16 +27,14 @@ export  function SearchBar() {
         <div className='panel-busqueda'>
             <IconField iconPosition="left">
                 <InputIcon className="pi pi-search"> </InputIcon>
-                <InputText v-model="value1" placeholder="Search location" />
+                <InputText v-model="value1" placeholder="Search location"  value={searchValues} id="ciudad-busqueda" onChange={handleBusqueda}/>
             </IconField>
-            <Button label="Search" onClick={()=> {setShowBusqueda(false)}}/>
+            <Button label="Search" onClick={()=> {setShowBusqueda(false); handleBusquedaAccion()}}/>
         </div>
         <div className='panel-paises'>
-            <ul>
-                <li><span>London</span><i className='pi pi-angle-right'></i></li>
-                <li><span>Barcelona</span><i className='pi pi-angle-right'></i></li>
-                <li><span>Long Beach</span><i className='pi pi-angle-right'></i></li>
-            </ul>
+            <Button label="London" value="London" icon="pi pi-angle-right" iconPos="right" onClick={()=>{setSearchValues("London")}}/>
+            <Button label="Barcelona" value="Barcelona"  icon="pi pi-angle-right" iconPos="right" onClick={()=>{setSearchValues("Barcelona")}}/>
+            <Button label="Long Beach" value="Long Beach"  icon="pi pi-angle-right" iconPos="right" onClick={()=>{setSearchValues("Long Beach")}}/>
         </div>
     </Card>
   )
