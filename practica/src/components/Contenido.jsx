@@ -7,12 +7,12 @@ import moment from 'moment'
 
 export function Contenido() {
 
-    const { dataClima, obtenerDireccionViento, unidadMedida, setUnidadMedida } = useContext(ClimaContext);
+    const { dataClima, obtenerDireccionViento, unidadMedida, setUnidadMedida, dataDias } = useContext(ClimaContext);
     
-    const footer = (
+    const footer = (tempMin, tempMax, times) =>(    
         <>
-            <div className='maxinmo'>16°C</div>
-            <div className='minimo'>11°C</div>
+            <div className='maxinmo'>{Math.round((tempMax/times)*100)/100}°{(unidadMedida==='metric')?'C':'F'}</div>
+            <div className='minimo'>{Math.round((tempMin/times)*100)/100}°{(unidadMedida==='metric')?'C':'F'}</div>
         </>
     );
 
@@ -23,21 +23,14 @@ export function Contenido() {
             <div className={unidadMedida ==='imperial' ? 'active':''} onClick={()=>{setUnidadMedida('imperial')}}>°F</div>
         </Card>
         <div className='panel-clima'> 
-            <Card footer={footer} header='Tomorrow'>                
-                <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
-            </Card>  
-            <Card footer={footer} header={moment().add(2,'days').format('ddd')}>                
-                <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
-            </Card>
-            <Card footer={footer} header={moment().add(3,'days').format('ddd')}>                
-                <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
-            </Card>
-            <Card footer={footer} header={moment().add(4,'days').format('ddd')}>                
-                <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
-            </Card>
-            <Card footer={footer} header={moment().add(5,'days').format('ddd')}>                
-                <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
-            </Card>     
+           {
+            Object.keys(dataDias).map(function(key, index) {
+                return (
+                <Card footer={footer(dataDias[key].tempMin, dataDias[key].tempMax, dataDias[key].times)} header={index === 0 ? 'Tomorrow' : moment().add(index+1,'days').format('ddd')} key={index}>                
+                    <Image src="./images/HeavyRain.png" alt="Image" width="45" />
+                </Card> ) 
+            })
+           } 
         </div>        
         <h1 className='highlight'>Today's Highlights</h1>
         <div className='panel-highlight'>

@@ -100,7 +100,7 @@ main {
           }
           .p-card-footer{
             display: flex;
-            width: 100%;
+            width: 162px;;
             justify-content: space-between;
             padding-inline: 1rem;
             .minimo{

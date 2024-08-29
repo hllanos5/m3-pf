@@ -10,11 +10,54 @@ export default function ClimaProvider({ children }) {
     const [city, setCity] = useState('london')
     const [unidadMedida, setUnidadMedida] = useState('metric')
     const [dataClima, setDataClima] = useState({});
+    const [dataDias, setDataDias] = useState({});
     
     const obtenerClimaPorCiudad = async () => {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=${unidadMedida}`);
         const result = await response.json();
         setDataClima(result);
+    }
+
+    const obtenerClimaCincoDias = async () => {
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=${unidadMedida}`)
+        .then((response) => response.json())
+        .then((data)=> {
+            const days = {}
+            let contador = 0;
+            data.list.forEach((obj, index)=> {                
+                if(contador ===5 ){ return }
+                let max = obj.main.temp_max;
+                let min = obj.main.temp_min;
+                let icon = obj.weather[0].icon;
+                let dtText = obj.dt_txt;
+                let weather = obj.weather[0].main;
+
+                const fecha = obj.dt_txt.split(" ")[0];
+                
+                if(!days.hasOwnProperty(fecha)){
+                    days[fecha] = {
+                        tempMax: max,
+                        tempMin: min,
+                        times: 1,
+                        icon:icon,
+                        dtText: dtText,
+                        weather: weather
+                    }
+                    contador ++;
+                }
+                else{
+                    days[fecha].tempMax+=max;
+                    days[fecha].tempMin+=min;
+                    days[fecha].times+=1;
+
+                }
+                
+                
+                
+            });
+            setDataDias(days);
+        })
+        
     }
 
     const obtenerDireccionViento = (dato)=> {
@@ -71,8 +114,8 @@ export default function ClimaProvider({ children }) {
     }
     
     useEffect(() => {
-        obtenerClimaPorCiudad()
-    }, [city])
+        Promise.all([obtenerClimaPorCiudad(), obtenerClimaCincoDias()])        
+    }, [city, unidadMedida])
 
     return (
         <ClimaContext.Provider
@@ -82,7 +125,8 @@ export default function ClimaProvider({ children }) {
                 dataClima,
                 unidadMedida,
                 setUnidadMedida,
-                obtenerDireccionViento
+                obtenerDireccionViento,
+                dataDias
             }}
         >
             {children}
