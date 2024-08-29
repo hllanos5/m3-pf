@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { SideBar } from './components/SideBar'
 import { Contenido } from './components/Contenido'
+import { SearchBar } from './components/SearchBar'
 
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
       </div>
       <div className='lado-derecho'>
         <Contenido/>
+      </div>
+      <div className='search-bar'>
+        <SearchBar/>
       </div>
     </main>
   )

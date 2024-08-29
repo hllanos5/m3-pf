@@ -36,6 +36,6 @@ export  function SideBar() {
                     <h4>{city.charAt(0).toUpperCase() + city.slice(1)}</h4>
                 </div>
             </div>
-        </Card>
+        </Card>        
     )
 }
