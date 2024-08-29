@@ -11,6 +11,18 @@ export default function ClimaProvider({ children }) {
     const [unidadMedida, setUnidadMedida] = useState('metric')
     const [dataClima, setDataClima] = useState({});
     const [dataDias, setDataDias] = useState({});
+
+    const obtenerPosicion = ()=> {
+        navigator.geolocation.getCurrentPosition(success);
+    }
+
+    const success = async(pos) => {
+        const crd = pos.coords;
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${crd.latitude}&lon=${crd.longitude}&appid=${API_KEY}&units=${unidadMedida}`);
+        const result = await response.json();
+        setDataClima(result);
+        setCity(result.name);
+    }
     
     const obtenerClimaPorCiudad = async () => {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=${unidadMedida}`);
@@ -50,10 +62,7 @@ export default function ClimaProvider({ children }) {
                     days[fecha].tempMin+=min;
                     days[fecha].times+=1;
 
-                }
-                
-                
-                
+                }                
             });
             setDataDias(days);
         })
@@ -126,7 +135,8 @@ export default function ClimaProvider({ children }) {
                 unidadMedida,
                 setUnidadMedida,
                 obtenerDireccionViento,
-                dataDias
+                dataDias,
+                obtenerPosicion
             }}
         >
             {children}
