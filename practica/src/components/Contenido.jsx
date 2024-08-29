@@ -3,11 +3,12 @@ import { Card } from 'primereact/card';
 import { Image } from 'primereact/image';
 import { Slider } from "primereact/slider";
 import { ClimaContext } from '../context/ClimaContext';
+import moment from 'moment'
 
 export function Contenido() {
 
     const { dataClima, obtenerDireccionViento, unidadMedida, setUnidadMedida } = useContext(ClimaContext);
-
+    
     const footer = (
         <>
             <div className='maxinmo'>16°C</div>
@@ -25,16 +26,16 @@ export function Contenido() {
             <Card footer={footer} header='Tomorrow'>                
                 <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
             </Card>  
-            <Card footer={footer} header='Tomorrow'>                
+            <Card footer={footer} header={moment().add(2,'days').format('ddd')}>                
                 <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
             </Card>
-            <Card footer={footer} header='Tomorrow'>                
+            <Card footer={footer} header={moment().add(3,'days').format('ddd')}>                
                 <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
             </Card>
-            <Card footer={footer} header='Tomorrow'>                
+            <Card footer={footer} header={moment().add(4,'days').format('ddd')}>                
                 <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
             </Card>
-            <Card footer={footer} header='Tomorrow'>                
+            <Card footer={footer} header={moment().add(5,'days').format('ddd')}>                
                 <Image src="./images/HeavyRain.png" alt="Image" width="45" />                   
             </Card>     
         </div>        
