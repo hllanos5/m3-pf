@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { LadoIzquierdo } from './components/LadoIzquierdo'
-import { LadoDerecho } from './components/LadoDerecho'
+import { SideBar } from './components/SideBar'
+import { Contenido } from './components/Contenido'
 
 
 function App() {
@@ -8,10 +8,10 @@ function App() {
   return (
     <main>
       <div className='lado-izquierdo'>
-        <LadoIzquierdo/>
+        <SideBar/>
       </div>
       <div className='lado-derecho'>
-        <LadoDerecho/>
+        <Contenido/>
       </div>
     </main>
   )
