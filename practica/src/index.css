@@ -3,6 +3,10 @@ main {
   display: grid;
   grid-template-columns: 25% 75%;
   height: 98vh;
+  @media (max-width: 767.98px) {
+    grid-template-columns: 100%;
+  }
+
   .card-lado-izquierdo {
     height: 100%;
     background-image: url(../public/images/Cloud-background.png);
@@ -11,6 +15,7 @@ main {
     background-position: center; 
     background-blend-mode: soft-light;
     background-position-y: 120px;
+    border-radius: 0;
     .p-inputtext{
       background-color: #6e707a;
       color: white;
@@ -19,9 +24,7 @@ main {
     .p-inputtext::placeholder{
       color: white;
     }
-    .p-card{
-      border-radius:none;
-    }
+    
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -60,6 +63,12 @@ main {
     background-color: #100e1d;
     color: white;
     padding-inline: 12rem;
+    @media (max-width: 767.98px) {
+      padding-inline: 5rem;
+    } 
+    @media (max-width: 1200px) {
+      padding-inline: 2rem;
+    } 
    
     .unidad-medida{
       background:#100e1d;
@@ -85,9 +94,15 @@ main {
     }
     .panel-clima{
       display: grid;
-      grid-template-columns: repeat(auto-fill, 19%);     
+      grid-template-columns: repeat(auto-fill, 19%);
       gap:0.5rem;
       justify-content: space-between;
+      @media (max-width: 767.98px) {
+        grid-template-columns: repeat(auto-fill, 40%);
+        place-content: center;
+        justify-content: none;
+      }     
+      
       .p-card{
         background: #1e213a;
         color: white;
@@ -129,6 +144,14 @@ main {
       row-gap: 1rem;
       justify-content: space-between;
       grid-template-columns: repeat(auto-fill, 45%);
+
+      @media (max-width: 767.98px) {
+        grid-template-columns: repeat(auto-fill, 100%);
+      }
+      @media (max-width: 1200px) {
+        grid-template-columns: repeat(auto-fill, 42%);
+        
+      } 
       .p-card-content{
         padding-block: 0;
       }
